@@ -1,0 +1,18 @@
+{
+    "name": "url-link-shortener",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon *"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "express": "^4.18.3",
+        "mongoose": "^8.2.1",
+        "mongoosh": "^0.0.7",
+        "nodemon": "^3.1.0"
+    }
+}
