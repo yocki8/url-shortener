@@ -6,6 +6,12 @@ async function getAllUrl(req, res) {
 }
 
 async function postUrl(req, res) {
+    const body = req.body;
+    if (!body || !body.real_url)
+        res.status(400).json({
+            error: "please provide a url",
+        });
+
     /******* generated random string*********/
     function getRand() {
         return Math.random()
@@ -40,7 +46,7 @@ async function postUrl(req, res) {
     /******************************* */
 
     let ret;
-    const realUrl = req.body.real_url;
+    const realUrl = body.real_url;
     const data = await alreadyRegistered(realUrl);
     if (data == null) {
         let generatedShortUrl = getRand();
@@ -74,19 +80,20 @@ async function getThisUrl(req, res) {
         "mapping.short_url": id,
     });
 
-    if (data == null)
-        res.status(404).json({
-            status: "url not found 😔",
-        });
-    else {
-        const timeVisited = data.analytics.times_visited++;
+    if (data!=null) {
+        
+        data.analytics.times_visited++;
         const history = data.analytics.history;
         history.push({
             timestamps: Date.now(),
             operation: "visited",
         });
-        data.save();
-        res.json(data);
+        await data.save();
+        res.status(200).redirect(data.mapping.real_url);
+    } else {
+        res.status(404).json({
+            status: "url not found 😔",
+        });
     }
 }
 
@@ -97,10 +104,11 @@ async function getUrlAnalytics(req, res) {
         "mapping.short_url": id,
     });
 
-    if(data == null)
-    res.status(404).json({status: "url not found 😔"});
-
-    else{
+    if (data == null)
+        res.status(404).json({
+            status: "url not found 😔",
+        });
+    else {
         res.json(data.analytics);
     }
 }
@@ -109,5 +117,5 @@ module.exports = {
     getAllUrl,
     postUrl,
     getThisUrl,
-    getUrlAnalytics
+    getUrlAnalytics,
 };
