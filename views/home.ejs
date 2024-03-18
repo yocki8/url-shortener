@@ -1,0 +1,60 @@
+<%
+// Define a function
+function greet(urlString) {
+    const str = urlString.replace(/^https?:\/\//,'').replace(/\.com$/, '');
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+%>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <h1 class="bg-blue-400 text-center font-bold text-[4rem]">URL shortener</h1>
+        
+
+        <div class="bg-blue-300 grid place-items-center my-5 w-2/3 m-auto px-10 py-4 rounded-2xl">
+            <form class="flex gap-10" method="post" action="/">
+                <div>
+                    <label class="text-2xl w-full  text-center font-semibold">Enter your Original Url</label>
+                    <input class="px-4 h-12 rounded-3xl mt-3 w-full" placeholder="Enter here" id="real_url" name="real_url">
+                </div>
+                <button type="submit" class="bg-blue-400 border-[5px] rounded-3xl px-4 py-2 hover:bg-blue-500">Generate</button>
+            </form>
+        </div>
+
+        <table class="w-[90%] mx-auto">
+            <thead>
+                <tr
+                    class="*:border *:border-blue-600 bg-blue-200"
+                >
+                    <th>Real Url</th>
+                    <th>Short Url</th>
+                    <th>Clicked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(site => { %>
+                <tr
+                    class="*:border w-1/3 *:border-blue-600 h-14 text-center"
+                >
+                    <td><a href='<%= site.mapping.short_url %>' target="_blank"><%= greet(site.mapping.real_url) %></a></td>
+                    <td><%= site.mapping.short_url %></td>
+                    <td><%= site.analytics.times_visited %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </body>
+</html>

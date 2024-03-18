@@ -2,11 +2,17 @@ const ShortUrl = require("../models/short-url");
 
 async function getAllUrl(req, res) {
     const data = await ShortUrl.find({});
+    res.render("home",{data});
+}
+
+async function getAllUrlJson(req, res) {
+    const data = await ShortUrl.find({});
     res.json(data);
 }
 
 async function postUrl(req, res) {
     const body = req.body;
+
     if (!body || !body.real_url)
         res.status(400).json({
             error: "please provide a url",
@@ -46,7 +52,11 @@ async function postUrl(req, res) {
     /******************************* */
 
     let ret;
-    const realUrl = body.real_url;
+    let realUrl = body.real_url;
+    if(!realUrl.includes("https://") || !realUrl.includes("https://"))
+    {
+        realUrl = "https://"+realUrl;
+    }
     const data = await alreadyRegistered(realUrl);
     if (data == null) {
         let generatedShortUrl = getRand();
@@ -71,7 +81,7 @@ async function postUrl(req, res) {
         ShortUrl.create(ret);
     } else ret = data;
 
-    res.json(ret);
+    res.redirect("/");
 }
 
 async function getThisUrl(req, res) {
@@ -80,8 +90,9 @@ async function getThisUrl(req, res) {
         "mapping.short_url": id,
     });
 
-    if (data!=null) {
-        
+    console.log(120);
+
+    if (data != null) {
         data.analytics.times_visited++;
         const history = data.analytics.history;
         history.push({
@@ -116,6 +127,7 @@ async function getUrlAnalytics(req, res) {
 module.exports = {
     getAllUrl,
     postUrl,
+    getAllUrlJson,
     getThisUrl,
     getUrlAnalytics,
 };
