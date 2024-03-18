@@ -13,7 +13,7 @@ Follow these steps to set up the Link Shortener App locally on your machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/link-shortener-app.git
+git clone https://github.com/yocki8/url-shortener.git
 ```
 
 ### Install Dependencies
@@ -39,10 +39,10 @@ npm run sync
 
 
 ## Usage
-#### Once the setup is complete and the app is running locally, you can start using the Link Shortener App to shorten URLs and manage your links efficiently.
+Once the setup is complete and the app is running locally, you can start using the Link Shortener App to shorten URLs and manage your links efficiently.
 
 ## Contributing
-#### Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
+Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
 ## License
-#### This project is licensed under My License.
+This project is licensed under My License 😉
