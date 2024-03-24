@@ -1,13 +1,16 @@
+const express = require("express");
 const fs = require("fs");
 
-function logData(fileName) {
+function logData(path) {
     return (req, res, next) => {
         fs.appendFile(
-            fileName,
-            `${Date.now()} : ${req.ip} : ${req.method} : ${req.path}\n`,
+            path,
+            `${Date.now()} ${req.path} ${req.ip} ${
+                req.method
+            }\n`,
             (err) => next()
         );
     };
 }
 
-module.exports = { logData };
+module.exports = logData;

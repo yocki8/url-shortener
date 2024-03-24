@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const shortUrlSchema = new mongoose.Schema({
+
     mapping: {
         short_url: {
             type: String,

@@ -1,26 +1,33 @@
 const express = require("express");
-const connectMongoDB = require("./connection");
-const { logData } = require("./middlewares");
-const urlRouter = require("./routers/short-url");
+const connectToMongo = require("./connection");
+const logData = require("./middlewares");
 const path = require("path");
-const PORT = 3000;
+const ejs = require("ejs");
+
+//Routers
+const urlRouter = require("./routers/url");
+const userRouter = require("./routers/user");
+
+//
 const app = express();
+const port = 3000;
 
+//connection to mongo
+connectToMongo("mongodb://127.0.0.1:27017/");
 
+//middlewares (plugins)
+app.use(express.urlencoded({ extended: false })); //used to parse data received in www.form-urlencoded
+app.use(express.json()); // used to parse json data
+app.use(logData("./log.txt"));
 
-//connection
-connectMongoDB("mongodb://127.0.0.1:27017/link-shortener");
-
-
-
-//Middlewares-plugin
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(logData("log.txt"));
+//default javascript template
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
+//routers (order matter here)
+app.use("/users",userRouter);
 app.use("/", urlRouter);
-app.listen(PORT, () =>
-    console.log("server is started at " + PORT)
+
+app.listen(port, () =>
+    console.log(`connected to port ${port}`)
 );

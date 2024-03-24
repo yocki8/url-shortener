@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+        />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-[#232b2b]">
+        <section class="translate-y-[15%]">
+            <div
+                class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8"
+            >
+                <div
+                    class="xl:mx-auto bg-white rounded-2xl xl:w-full shadow-md p-4 xl:max-w-sm text-[#232b2b] 2xl:max-w-md"
+                >
+                    <div
+                        class="mb-2 flex justify-center"
+                    ></div>
+                    <h2
+                        class="text-center text-2xl font-bold leading-tight"
+                    >
+                        Sign up to your account
+                    </h2>
+                    <form
+                        class="mt-8"
+                        method="POST"
+                        action="/users/signup"
+                    >
+                        <div class="space-y-5">
+                            <div>
+                                <label
+                                    for="name"
+                                    class="text-base font-medium text-gray-900"
+                                >
+                                    User Name
+                                </label>
+                                <div class="mt-2">
+                                    <input
+                                        required
+                                        placeholder="Username"
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="email"
+                                    class="text-base font-medium text-gray-900"
+                                >
+                                    Email address
+                                </label>
+                                <div class="mt-2">
+                                    <input
+                                        required
+                                        placeholder="Email"
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    class="flex items-center justify-between"
+                                >
+                                    <label
+                                        for="password"
+                                        class="text-base font-medium text-gray-900"
+                                    >
+                                        Password
+                                    </label>
+                                </div>
+                                <div class="mt-2">
+                                    <input
+                                        placeholder="Password"
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        required
+                                        class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <button
+                                    class="inline-flex w-full items-center justify-center rounded-md bg-[#232b2b] px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                                    type="submit"
+                                >
+                                    Register Me
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
