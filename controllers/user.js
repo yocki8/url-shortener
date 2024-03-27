@@ -1,4 +1,7 @@
 const User = require("../models/user");
+const {v4: uuid4} = require('uuid');
+const { setUser } = require("../service/auth");
+
 
 async function getAllUsers(req, res) {
     const data = await User.find({});
@@ -11,16 +14,23 @@ async function getThisUser(req, res) {
     res.json(data);
 }
 
+
+function configureCookie(data,res){
+    const sessionId = uuid4();
+    setUser(sessionId, data);
+    res.cookie("uid", sessionId);
+}
 async function signUpUser(req, res) {
     const { name, email, password } = req.body;
     try {
-        await User.create({
+        const data = await User.create({
             name,
             email,
             password,
         });
-
-        res.redirect(`/users/api/${name}`);
+        
+        configureCookie(data,res);
+        res.redirect('/');
     } catch (err) {
         const { code } = err;
         if (code === 11000)
@@ -42,12 +52,14 @@ async function logInUser(req, res) {
             res.json({ err: "user not found" });
         else if (data.password !== password)
             res.json({ error: "Wrong Password" });
-        else res.json(data);
+        else
+        {
+            configureCookie(data,res);
+            return res.redirect('/');
+        }
     } catch (err) {
-        const { msg } = err;
-        res.status(500).json({
-            error: msg,
-        });
+        console.log(err);
+        res.status(500).json({err:"error"});
     }
 }
 

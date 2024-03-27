@@ -25,7 +25,15 @@
     <body
         class="bg-[#232b2b] grid gap-12 text-white m-8 font-[poppins] font-semibold"
     >
-        <h1 class="m-auto w-fit text-4xl">Url Shortener</h1>
+        <nav class="flex relative">
+            <h1 class="m-auto w-fit text-4xl">
+                Url Shortener
+            </h1>
+
+            <div class="absolute">
+                <h1>Welcome <span class="border px-2"><%= name %></span> </h1>
+            </div>
+        </nav>
 
         <form
             action="/"
@@ -44,6 +52,7 @@
                     class="rounded-3xl p-4 h-10 text-black"
                     type="text"
                     autofocus
+                    placeholder="ex: wikepedia.com"
                 />
             </div>
             <button
@@ -64,11 +73,17 @@
 
             <tbody class="*:h-10 text-center">
                 <% data.forEach(url => { %>
-                    <tr class="border-b">
-                        <td><a href="<%=url.short_url%>" target="_blank"><%= url.real_url %></a></td>
-                        <td><%= url.short_url %></td>
-                        <td><%= url.analytics.clicked%></td>
-                    </tr>
+                <tr class="border-b border-gray-600 md:border">
+                    <td>
+                        <a
+                            href="<%=url.short_url%>"
+                            target="_blank"
+                            ><%= url.real_url %></a
+                        >
+                    </td>
+                    <td><%= url.short_url %></td>
+                    <td><%= url.analytics.clicked%></td>
+                </tr>
                 <% }) %>
             </tbody>
         </table>

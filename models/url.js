@@ -20,10 +20,14 @@ const urlSchema = new mongoose.Schema({
 
         history: [{ type: Number }],
     },
+
+    createdBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    }
 },{timeseries: true});
 
-const Url = mongoose.model("urlData",urlSchema);
-
+const Url = mongoose.model("url-data",urlSchema);
 module.exports = Url;
 
 

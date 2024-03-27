@@ -12,12 +12,14 @@
     "description": "",
     "dependencies": {
         "connect-livereload": "^0.6.1",
+        "cookie-parser": "^1.4.6",
         "ejs": "^3.1.9",
         "express": "^4.18.3",
         "livereload": "^0.9.3",
         "mongoose": "^8.2.1",
         "mongoosh": "^0.0.7",
         "nanoid": "^3.3.7",
-        "nodemon": "^3.1.0"
+        "nodemon": "^3.1.0",
+        "uuid": "^9.0.1"
     }
 }
